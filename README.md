@@ -9,7 +9,7 @@ There are two config options for setting sleep amounts the default config will b
     - Configures the required amount of sleeping players to be a number. This supercedes percentage
 
 
- [Project Posedion Server]([http://example.com](https://github.com/retromcorg/Project-Poseidon))
+ [Project Poseidon Server Repo]((https://github.com/retromcorg/Project-Poseidon)
 
     
 ## Build
