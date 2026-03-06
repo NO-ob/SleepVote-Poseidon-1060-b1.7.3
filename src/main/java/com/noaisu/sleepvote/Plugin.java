@@ -69,7 +69,7 @@ public class Plugin extends JavaPlugin implements Listener {
 
         Bukkit.broadcastMessage(event.getPlayer().getName() + " is eepy (" + sleepers + "/" + sleepNumber + ")");
 
-        if (sleepers > sleepNumber) {
+        if (sleepers >= sleepNumber) {
             world.setTime(0);
             Bukkit.broadcastMessage("Player kun... ohayou (^v^)");
         }
