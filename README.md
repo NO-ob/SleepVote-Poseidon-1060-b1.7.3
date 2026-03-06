@@ -1,12 +1,11 @@
-# SleepVote Plugin
+# Poseidon-Plugin-Template
 
-A plugin to allow sleeping with a subset of players in a CraftBukkit Posedion 1060 Server.
+This repository serves as a template to assist with creating plugins for Project Poseidon.
 
-There are two config options for setting sleep amounts the default config will be generated when running with the plugin
-- Percentage
-    - Configures the required amount of sleeping players to be a percentage of the total players
-- Number
-    - Configures the required amount of sleeping players to be a number. This supercedes percentage
+It includes examples of:
+- A configuration file.
+- A listener.
+- A command.
 
 ## Steps to Use This Template
 

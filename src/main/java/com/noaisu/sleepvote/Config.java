@@ -1,4 +1,4 @@
-package org.retromc.templateplugin;
+package com.noaisu.sleepvote;
 
 import org.bukkit.util.config.Configuration;
 import org.jetbrains.annotations.Nullable;
@@ -6,15 +6,18 @@ import org.jetbrains.annotations.Nullable;
 import java.io.File;
 
 /**
- * A custom configuration class for managing plugin configuration files in a Bukkit environment.
- * Extends the {@link Configuration} class to provide additional utility methods for
+ * A custom configuration class for managing plugin configuration files in a
+ * Bukkit environment.
+ * Extends the {@link Configuration} class to provide additional utility methods
+ * for
  * reading and writing configuration options with defaults.
  */
-public class TemplateConfig extends Configuration {
+public class Config extends Configuration {
     private final int configVersion = 1;
 
-
-    private TemplatePlugin plugin;
+    private Plugin plugin;
+    public String sleepPercentageKey = "settings.sleepPercentage.value";
+    public String sleepNumberKey = "settings.sleepNumber.value";
 
     /**
      * Constructs a new TemplateConfig instance.
@@ -22,7 +25,7 @@ public class TemplateConfig extends Configuration {
      * @param plugin     The plugin instance associated with this configuration.
      * @param configFile The configuration file to be managed.
      */
-    public TemplateConfig(TemplatePlugin plugin, File configFile) {
+    public Config(Plugin plugin, File configFile) {
         super(configFile);
         this.plugin = plugin;
         this.reload();
@@ -34,38 +37,46 @@ public class TemplateConfig extends Configuration {
      */
     private void write() {
         // Convert old configuration keys to new keys if necessary
-        if (this.getString("config-version") == null || Integer.valueOf(this.getString("config-version")) < configVersion) {
-            this.plugin.logger(java.util.logging.Level.INFO, "Converting config to new version (" + configVersion + ")...");
+        if (this.getString("config-version") == null
+                || Integer.valueOf(this.getString("config-version")) < configVersion) {
+            this.plugin.logger(java.util.logging.Level.INFO,
+                    "Converting config to new version (" + configVersion + ")...");
             convertToNewConfig();
-            this.setProperty("config-version", configVersion); // This should be handled by the conversion method but just in case
+            this.setProperty("config-version", configVersion); // This should be handled by the conversion method but
+                                                               // just in case
         }
 
         // Main options
         generateConfigOption("config-version", configVersion);
 
         // Plugin options
-        generateConfigOption("settings.test-command.enabled.value", true);
-        generateConfigOption("settings.test-command.enabled.info", "Whether the test command is enabled."); // Informational comment
+        generateConfigOption(sleepPercentageKey, 0.5);
+        generateConfigOption("settings.sleepPercentage.comment",
+                "Percentage of sleeping players needed to change to day");
+        generateConfigOption(sleepNumberKey, 0);
+        generateConfigOption("settings.sleepNumber.comment",
+                "Amount of sleeping players needed to change to day, will override percentage if set higher than 0");
 
-        generateConfigOption("settings.test-command.response.value", "This is the response sent to players when they execute the test command.");
-        generateConfigOption("settings.test-command.response.info", "The response sent to players when they execute the test command."); // Informational comment
-
-        generateConfigOption("settings.welcome-message.value", "Welcome to the server, %player%!");
-        generateConfigOption("settings.welcome-message.info", "The message sent to players when join the server."); // Informational comment
     }
 
     private void convertToNewConfig() {
         // Convert old configuration keys to new keys
 
         // Convert from old config version 0 to new config version 1
-        if(this.getString("config-version") == null || Integer.valueOf(this.getString("config-version")) < 1) {
-            convertToNewAddress("settings.test-command-response.value", "settings.test-command.response.value", true);
-            convertToNewAddress("settings.test-command.enabled", "settings.test-command.enabled.value", true);
-        }
+        /*
+         * if (this.getString("config-version") == null ||
+         * Integer.valueOf(this.getString("config-version")) < 1) {
+         * convertToNewAddress("settings.test-command-response.value",
+         * "settings.test-command.response.value", true);
+         * convertToNewAddress("settings.test-command.enabled",
+         * "settings.test-command.enabled.value", true);
+         * }
+         */
     }
 
     /**
-     * Reloads the configuration by loading the file, writing defaults, and saving changes.
+     * Reloads the configuration by loading the file, writing defaults, and saving
+     * changes.
      */
     private void reload() {
         this.load();
@@ -75,7 +86,8 @@ public class TemplateConfig extends Configuration {
 
     /**
      * Converts an old configuration key to a new one.
-     * If the old key exists and the new key does not, the old key's value is copied to the new key,
+     * If the old key exists and the new key does not, the old key's value is copied
+     * to the new key,
      * and the old key is removed.
      *
      * @param newKey The new configuration key.
@@ -114,7 +126,7 @@ public class TemplateConfig extends Configuration {
         this.setProperty(key, value);
     }
 
-    //Getters Start
+    // Getters Start
     public Object getConfigOption(String key) {
         return this.getProperty(key);
     }
@@ -139,5 +151,5 @@ public class TemplateConfig extends Configuration {
         return Boolean.valueOf(getConfigString(key));
     }
 
-    //Getters End
+    // Getters End
 }

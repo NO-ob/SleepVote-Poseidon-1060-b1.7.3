@@ -1,6 +1,6 @@
 name: ${project.name}
 description: ${project.description}
-main: org.retromc.templateplugin.TemplatePlugin
+main: com.noaisu.sleepvote.Plugin
 version: ${project.version}
 authors:
   - JohnyMuffin
