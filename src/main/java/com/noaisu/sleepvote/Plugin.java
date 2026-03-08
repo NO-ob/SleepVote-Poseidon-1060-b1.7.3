@@ -61,6 +61,10 @@ public class Plugin extends JavaPlugin implements Listener {
             sleepNumber = (int) Math.floor(players * percentage);
         }
 
+        if (sleepNumber == 0) {
+            sleepNumber = 1;
+        }
+
         for (Player p : world.getPlayers()) {
             if (p.isSleeping() || p.equals(event.getPlayer())) {
                 sleepers++;
