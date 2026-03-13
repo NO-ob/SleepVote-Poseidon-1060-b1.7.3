@@ -6,7 +6,7 @@
 
     <groupId>com.noaisu</groupId>
     <artifactId>SleepVote</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <description>A plugin to sleep with a subset of players.</description>
 
     <properties>

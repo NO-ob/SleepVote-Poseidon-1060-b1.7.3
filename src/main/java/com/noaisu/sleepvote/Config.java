@@ -17,7 +17,17 @@ public class Config extends Configuration {
 
     private Plugin plugin;
     public String sleepPercentageKey = "settings.sleepPercentage.value";
+    public String sleepPercentageCommentKey = "settings.sleepPercentage.comment";
     public String sleepNumberKey = "settings.sleepNumber.value";
+    public String sleepNumberCommentKey = "settings.sleepNumber.comment";
+    public String rainChanceKey = "settings.rainChance.value";
+    public String rainChanceCommentKey = "settings.rainChance.comment";
+    public String rainDaysKey = "settings.rainDays.value";
+    public String rainDaysCommentKey = "settings.rainDays.comment";
+    public String thunderChanceKey = "settings.thunderChance.value";
+    public String thunderChanceCommentKey = "settings.thunderChance.comment";
+    public String clearDaysKey = "settings.clearDays.value";
+    public String clearDaysCommentKey = "settings.clearDays.comment";
 
     /**
      * Constructs a new TemplateConfig instance.
@@ -51,11 +61,23 @@ public class Config extends Configuration {
 
         // Plugin options
         generateConfigOption(sleepPercentageKey, 0.5);
-        generateConfigOption("settings.sleepPercentage.comment",
+        generateConfigOption(sleepPercentageCommentKey,
                 "Percentage of sleeping players needed to change to day");
         generateConfigOption(sleepNumberKey, 0);
-        generateConfigOption("settings.sleepNumber.comment",
+        generateConfigOption(sleepNumberCommentKey,
                 "Amount of sleeping players needed to change to day, will override percentage if set higher than 0");
+        generateConfigOption(rainChanceKey, 0.3);
+        generateConfigOption(rainChanceCommentKey,
+                "Percentage chance of rain after sleeping");
+        generateConfigOption(rainDaysKey, 3);
+        generateConfigOption(rainDaysCommentKey,
+                "Max length of rain double as ingame days");
+        generateConfigOption(thunderChanceKey, 0.4);
+        generateConfigOption(thunderChanceCommentKey,
+                "Percentage chance of a thunderstorm if raining after sleeping");
+        generateConfigOption(clearDaysKey, 7.5);
+        generateConfigOption(clearDaysCommentKey,
+                "Max length of clear weather as ingame days");
 
     }
 
